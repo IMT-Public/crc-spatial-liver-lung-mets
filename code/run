@@ -1,0 +1,50 @@
+#!/usr/bin/env bash
+# ---------------------------------------------------------------------------
+# Entry point. Code Ocean's Reproducible Run executes this file.
+#
+#   ./run                every figure, in order
+#   ./run 02             Figure 2 only
+#   ./run 03 04          two of them
+#
+# One script per figure. Each fits the models it needs and writes only its own
+# results/<figure>/ folder, so there is no ordering constraint between them
+# and no shared intermediate to go stale. Figures that share an adjustment
+# family refit it -- seconds -- rather than depending on each other.
+#
+# Runtime is dominated by 03_figure3.R, which fits one mixed model per gene
+# per organ for the Figure 3c volcanoes (~5 minutes). Everything else is
+# seconds to a minute.
+# ---------------------------------------------------------------------------
+set -euo pipefail
+
+cd "$(dirname "$0")"
+
+ALL=(01_figure1 02_figure2 03_figure3 04_figure4 05_supplementary_figure1)
+
+TARGETS=()
+if [ "$#" -eq 0 ]; then
+  TARGETS=("${ALL[@]}")
+else
+  for arg in "$@"; do
+    match=""
+    for fig in "${ALL[@]}"; do
+      case "$fig" in "$arg"|"$arg"_*|*"$arg") match="$fig" ;; esac
+    done
+    if [ -z "$match" ]; then
+      echo "unknown figure '$arg'; expected one of: ${ALL[*]}" >&2
+      exit 2
+    fi
+    TARGETS+=("$match")
+  done
+fi
+
+RESULTS="${CRC_RESULTS_DIR:-$([ -d /results ] && echo /results || echo ../results)}"
+mkdir -p "$RESULTS"
+
+for fig in "${TARGETS[@]}"; do
+  echo "=== $fig ==="
+  Rscript "$fig.R"
+done
+
+echo "=== done ==="
+find "$RESULTS" -type f | sort

@@ -1,0 +1,73 @@
+cff-version: 1.2.0
+message: >-
+  If you use this code, please cite the article below.
+title: >-
+  Analysis code for "Spatial profiling of primary CRC and synchronous lung
+  and liver metastases identifies a liver-specific stromal niche associated
+  with immune exclusion"
+type: software
+license: MIT
+repository-code: "https://github.com/IMT-Public/crc-spatial-liver-lung-mets"
+authors:
+  - family-names: Liu
+    given-names: Wenbin
+    affiliation: The University of Texas MD Anderson Cancer Center
+  - family-names: Jiménez-Sánchez
+    given-names: Alejandro
+    affiliation: The University of Texas MD Anderson Cancer Center
+  - family-names: Chen
+    given-names: Yulong
+    affiliation: The University of Texas MD Anderson Cancer Center
+  - family-names: Chen
+    given-names: Jiun-Sheng
+    affiliation: The University of Texas MD Anderson Cancer Center
+preferred-citation:
+  type: article
+  title: >-
+    Spatial profiling of primary CRC and synchronous lung and liver
+    metastases identifies a liver-specific stromal niche associated with
+    immune exclusion
+  journal: Clinical Cancer Research
+  year: 2026
+  # doi: add at publication
+  authors:
+    - family-names: Basu
+      given-names: Sreyashi
+    - family-names: Anandappa
+      given-names: Gayathri
+    - family-names: Jindal
+      given-names: Sonali
+    - family-names: Liu
+      given-names: Wenbin
+    - family-names: He
+      given-names: Zhong
+    - family-names: Chen
+      given-names: Yulong
+    - family-names: Chen
+      given-names: Jiun Sheng
+    - family-names: Zhang
+      given-names: Yuwei
+    - family-names: Jiménez-Sánchez
+      given-names: Alejandro
+    - family-names: Kao
+      given-names: Amber
+    - family-names: Aguirre
+      given-names: Sergio D.
+    - family-names: Antonoff
+      given-names: Mara
+    - family-names: Agbadiba
+      given-names: Erica C.
+    - family-names: Siddiqui
+      given-names: Bilal
+    - family-names: Newhook
+      given-names: Timothy
+    - family-names: Vauthey
+      given-names: Jean Nicholas
+    - family-names: Maru
+      given-names: Dipen
+    - family-names: Chang
+      given-names: George J.
+    - family-names: Kopetz
+      given-names: Scott
+    - family-names: Sharma
+      given-names: Padmanee
