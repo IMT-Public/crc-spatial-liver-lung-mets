@@ -12,14 +12,14 @@ authors:
   - family-names: Liu
     given-names: Wenbin
     affiliation: The University of Texas MD Anderson Cancer Center
-  - family-names: Jiménez-Sánchez
-    given-names: Alejandro
-    affiliation: The University of Texas MD Anderson Cancer Center
   - family-names: Chen
     given-names: Yulong
     affiliation: The University of Texas MD Anderson Cancer Center
   - family-names: Chen
     given-names: Jiun-Sheng
+    affiliation: The University of Texas MD Anderson Cancer Center
+  - family-names: Jiménez-Sánchez
+    given-names: Alejandro
     affiliation: The University of Texas MD Anderson Cancer Center
 preferred-citation:
   type: article
