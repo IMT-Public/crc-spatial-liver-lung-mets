@@ -1,10 +1,11 @@
 # Code Ocean generates this file from the Environment editor. It is checked in
 # so that the capsule can also be rebuilt outside Code Ocean.
 #
-# Base image matches the R version reported in the manuscript Methods (4.5.1).
-FROM rocker/r-ver:4.5.1
+# Code Ocean only accepts its own base images. This one ships R 4.5.1, the
+# version reported in the manuscript Methods.
+FROM registry.codeocean.com/codeocean/r-studio:r-4.5.1-1.2204.0-rstudio-server-2025.05.1-513-ubuntu22.04
 
-ENV DEBIAN_FRONTEND=noninteractive
+ARG DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
       libcurl4-openssl-dev libssl-dev libxml2-dev libfontconfig1-dev \
@@ -14,4 +15,3 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 COPY install.R /tmp/install.R
 RUN Rscript /tmp/install.R
-
