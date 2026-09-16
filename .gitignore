@@ -2,15 +2,11 @@
 /results/*
 !/results/.gitkeep
 
-# Input data is NOT tracked. It ships with the Code Ocean capsule and is
-# staged by hand for a local run -- see data/README.md for the manifest and
-# code/check_inputs.R to verify a directory. Keeping patient-derived matrices
-# out of git history is what lets this repository be mirrored publicly.
-/data/**
-!/data/README.md
-!/data/**/
-!/data/**/README.md
-!/data/**/README
+# Processed, de-identified study data are tracked (slides and ROIs recoded;
+# see data/README.md). The two public TCGA files are not: they are fetched by
+# code/fetch_tcga.sh and the expression matrix alone is 83 MB.
+/data/data_tcga/data_clinical_patient.txt
+/data/data_tcga/data_mrna_seq_v2_rsem_zscores_ref_all_samples.txt
 
 .Rhistory
 .RData

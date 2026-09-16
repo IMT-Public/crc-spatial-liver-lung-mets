@@ -1,8 +1,9 @@
 # Data manifest
 
-**Nothing in this directory is tracked in git.** The files are processed,
-de-identified, ROI-level matrices — not raw sequencing data. They ship with
-the Code Ocean capsule; for a local run, stage them here by hand.
+The study files here are processed, de-identified, ROI-level matrices — not
+raw sequencing data — and are tracked in git. The two public TCGA files are
+not tracked; download them with `code/fetch_tcga.sh` (see below). All nine
+files are bundled in the Code Ocean capsule.
 
 Raw GeoMx DSP data are under controlled access at the European
 Genome-phenome Archive, accession **EGA00002691488**.
@@ -36,9 +37,8 @@ Both come from cBioPortal study **`coadread_tcga_pan_can_atlas_2018`**
 cd code && ./fetch_tcga.sh
 ```
 
-which downloads
-<https://cbioportal-datahub.s3.amazonaws.com/coadread_tcga_pan_can_atlas_2018.tar.gz>
-and extracts the expression matrix. To do it by hand instead, go to
+which downloads both files from the cBioPortal datahub repository
+(`public/coadread_tcga_pan_can_atlas_2018/`). To do it by hand instead, go to
 <https://www.cbioportal.org/study/summary?id=coadread_tcga_pan_can_atlas_2018>,
 use the download link, and take these two files from the archive:
 

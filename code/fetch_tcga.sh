@@ -14,8 +14,8 @@
 #
 # These files are public and redistributable, so they are BUNDLED into /data
 # for the Code Ocean capsule: a Reproducible Run has no network access. This
-# script is for local and CI runs. Neither file is tracked in git -- the
-# expression matrix alone is 83 MB.
+# script is for local and CI runs. Neither file is tracked in git (the rest of
+# data/ is) -- the expression matrix alone is 83 MB.
 # ---------------------------------------------------------------------------
 set -euo pipefail
 cd "$(dirname "$0")"
