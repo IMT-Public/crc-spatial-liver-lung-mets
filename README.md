@@ -1,4 +1,11 @@
-# Spatial profiling of primary CRC and synchronous lung and liver metastases
+# Spatial profiling of primary CRC and synchronous lung and liver metastases identifies a liver-specific stromal niche associated with immune exclusion
+
+## Reproducing the analysis
+
+1. Create/install the environment
+2. Obtain/download the required data
+3. Run scripts in this order
+4. Expected outputs are written to results/
 
 ## Abstract
 
