@@ -82,6 +82,10 @@ if (!is.null(p)) {
       if (any(acc)) bad(sprintf("  pData$slide holds %d accession-like values; use the recoded object",
                                 sum(acc)))
       else ok("  pData$slide carries no pathology accession numbers")
+      ## ROIs must carry ROI_### codes, not GeoMx DSP scan IDs (plate/well).
+      dsp <- grepl("^DSP-", Biobase::sampleNames(targets.new))
+      if (any(dsp)) bad(sprintf("  %d ROIs still named by DSP scan ID; use the recoded object", sum(dsp)))
+      else ok("  ROIs carry ROI_### codes, not DSP scan IDs")
     } else {
       bad(paste("  expected object 'targets.new'; file contains:",
                 paste(ls(e), collapse = ", ")))

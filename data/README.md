@@ -84,7 +84,11 @@ into `/data` for the capsule rather than downloaded at runtime.
 ## De-identification
 
 Patients are labelled `1`–`8`, and slides `slide_01`–`slide_27`. No figure
-script reads the slide label. ROIs are identified by their GeoMx DSP sample
-IDs (`DSP-<plate>-<well>`), which are instrument identifiers.
+script reads the slide label. ROIs are labelled `ROI_001`–`ROI_219` (with the
+`.dcc` suffix where the GeoMx object uses it) in place of GeoMx DSP scan IDs,
+consistently across the GeoMx object, the GSVA score table and the CIBERSORTx
+table. Lab-internal run metadata (plate, well, run date, internal sample code)
+has been removed from the object's `protocolData`. The key linking these codes
+to the original identifiers is held privately by the study team.
 `check_inputs.R` fails if a slide label looks like a pathology accession
-number.
+number or an ROI still carries a DSP scan ID.
