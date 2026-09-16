@@ -39,40 +39,44 @@ synchronous lung and liver metastases identifies a liver-specific stromal niche
 associated with immune exclusion". To run everything, press **Run**. This
 executes `code/run`, a shell script that runs one R script per figure. Click
 the Environment icon to see the installed packages (R 4.5.1, Bioconductor
-3.22). The figures it generates are described below; legend text
-is quoted from the manuscript.
+3.22). The generated figure panels are described below. The legend text is
+adapted from the current manuscript captions; ellipses mark panels not produced
+by this archive.
+
+### Figure captions
 
 **Figure 1. Comparative transcriptomic and cellular landscapes of primary colon
 tumors and metastatic lesions in the liver and lung**
 
-… **(b)** Cell type composition in primary colon tumors (n=3), liver metastases
-(n=8), and lung metastases (n=8) using CIBERSORT, **(c)** Volcano plot showing
-differentially expressed genes (DEGs) between **(top)** colon and liver tumors
-and **(bottom)** between colon and lung tumors, Vertical dashed lines indicate
-the log2 fold-change cutoff, and the horizontal dashed line indicates the
-adjusted p-value threshold. **(d)** Enrichment of biological pathways associated
-with DEGs across metastatic sites compared to primary tumors, illustrating
-site-specific molecular programs. Statistical significance was assessed using
-linear mixed-effects models with patient as a random effect, followed by
-Benjamini–Hochberg adjustment for multiple comparisons. Adjusted p values are
-shown.
+… **(b)** Cell type composition in primary colon tumors (*n* = 3), liver
+metastases (*n* = 8), and lung metastases (*n* = 8) using CIBERSORT. **(c)**
+Volcano plot showing differentially expressed genes (DEGs) between **(top)**
+colon and liver tumors and **(bottom)** colon and lung tumors. Vertical dashed
+lines indicate the log2 fold-change cutoff, and the horizontal dashed line
+indicates the adjusted *p*-value threshold. **(d)** Enrichment of biological
+pathways associated with DEGs across metastatic sites compared to primary
+tumors, illustrating site-specific molecular programs. Statistical significance
+was assessed using linear mixed-effects models with patient as a random effect,
+followed by Benjamini–Hochberg adjustment for multiple comparisons. Pathways
+with nominal *p* < 0.05 are shown; asterisks indicate pathways that remained
+significant after Benjamini–Hochberg correction (adjusted *p* < 0.05).
 
 **Figure 2. Differential enrichment of stromal, myeloid, B cell, and T cell
 subpopulations across primary colon tumors and matched liver and lung
 metastases.**
 
-**(a)** Fibroblast subtypes mCAFs and tumor-associated tCAFs, **(b)**
-MRC1+CSF1R+ macrophages and SPP1+ macrophages exhibit site-specific enrichment
-with higher scores in liver metastases, highlighting a myeloid immunosuppressive
-phenotype, **(c)** Proliferating B cells and plasma cells show greater abundance
-in lung metastases, suggesting differential humoral immune activation, **(d)**
-memory CD4+ Tcm and CD8+ T Tem cells are variably enriched across sites, with
-increased scores in lung metastases, indicating site-dependent adaptive immune
-engagement, The horizontal dashed line indicates a cell-type score of 0. …
+**(a)** Fibroblast subtypes mCAFs and tumor-associated tCAFs. **(b)**
+MRC1+CSF1R+ macrophages and SPP1+ macrophages exhibit site-specific enrichment,
+with higher scores in liver metastases highlighting a myeloid immunosuppressive
+phenotype. **(c)** Proliferating B cells and plasma cells show greater abundance
+in lung metastases, suggesting differential humoral immune activation. **(d)**
+Memory CD4+ Tcm and CD8+ T Tem cells are variably enriched across sites, with
+increased scores in lung metastases indicating site-dependent adaptive immune
+engagement. The horizontal dashed line indicates a cell-type score of 0. …
 Statistical significance was assessed using linear mixed-effects models with
 patient as a random effect, followed by Benjamini–Hochberg adjustment for
-multiple comparisons. Adjusted p values are shown. \*\*\*\*p < 0.0001, \*\*\*p <
-0.001, \*\*p < 0.01,\*p < 0.05.
+multiple comparisons. Adjusted *p* values are shown: \*\*\*\* *p* < 0.0001,
+\*\*\* *p* < 0.001, \*\* *p* < 0.01, and \* *p* < 0.05.
 
 **Figure 3. Spatial immune profiling reveals site- and region-specific
 enrichment of immune populations in primary and metastatic colorectal cancer**
@@ -80,16 +84,17 @@ enrichment of immune populations in primary and metastatic colorectal cancer**
 … **(b)** Cell type score comparisons across tumor core (In) and invasive margin
 (Ex) regions in primary colon tumors, liver metastases, and lung metastases.
 Select populations shown include proliferating B cells, plasma cells, CD4+
-central memory T cells (Tcm) and CD8+ effector memory T cells, The horizontal
+central memory T cells (Tcm), and CD8+ effector memory T cells. The horizontal
 dashed line indicates a cell-type score of 0. **(c)** Volcano plot showing
 differentially expressed genes **(top)** in the tumor core versus invasive
-margin of lung metastases, **(bottom)** in the tumor core versus invasive margin
-of liver metastases, Vertical dashed lines indicate the log2 fold-change cutoff,
-and the horizontal dashed line indicates the adjusted p-value threshold. …
+margin of lung metastases and **(bottom)** in the tumor core versus invasive
+margin of liver metastases. Vertical dashed lines indicate the log2 fold-change
+cutoff, and the horizontal dashed line indicates the adjusted *p*-value
+threshold. …
 Statistical significance was assessed using linear mixed-effects models with
 patient as a random effect, followed by Benjamini–Hochberg adjustment for
-multiple comparisons. Adjusted p values are shown. \*\*\*\*p < 0.0001, \*\*\*p <
-0.001, \*\*p < 0.01,\*p < 0.05.
+multiple comparisons. Adjusted *p* values are shown: \*\*\*\* *p* < 0.0001,
+\*\*\* *p* < 0.001, \*\* *p* < 0.01, and \* *p* < 0.05.
 
 **Figure 4. Hepatic stellate cell activation and CXCL12-CXCR4 signaling are
 associated with an immunosuppressive niche in liver metastases.**
@@ -102,15 +107,15 @@ Expression of *CXCR4*, the cognate receptor for *CXCL12*, is also elevated in
 liver lesions, supporting a *CXCL12–CXCR4* signaling milieu that may contribute
 to immune exclusion, **(d)** In the TCGA-COAD+READ cohort, which predominantly
 comprises primary colorectal tumors, the aHSC/fibrotic stromal gene signature
-showed a significant association with PFS (Cox proportional hazards p = 0.022,
-HR = 1.426; log-rank p = 0.024), supporting the prognostic relevance of this
-stromal program in CRC rather than direct validation of the liver-specific
-metastatic niche. Statistical significance in (a–c) was assessed using linear
-mixed-effects models with patient as a random effect, followed by
-Benjamini–Hochberg adjustment for multiple comparisons; adjusted p values are
-shown (\*\*\*p < 0.001, \*\*p < 0.01, \*p < 0.05). Survival analyses in (d) were
-evaluated by Cox proportional hazards and log-rank tests and were not subject to
-multiple-comparison adjustment.
+showed a significant association with PFS (Cox proportional hazards *p* =
+0.022, HR = 1.426; log-rank *p* = 0.024), supporting the prognostic relevance
+of this stromal program in CRC rather than direct validation of the
+liver-specific metastatic niche. Statistical significance in (a–c) was
+assessed using linear mixed-effects models with patient as a random effect,
+followed by Benjamini–Hochberg adjustment for multiple comparisons; adjusted
+*p* values are shown (\*\*\* *p* < 0.001, \*\* *p* < 0.01, \* *p* < 0.05).
+Survival analyses in (d) were evaluated by Cox proportional hazards and
+log-rank tests and were not subject to multiple-comparison adjustment.
 
 **Supp Figure 1b-c. Spatial immune differences across metastatic sites**
 
@@ -119,8 +124,8 @@ and SPP1+ macrophages across tumor core (In) and invasive margin (Ex) regions in
 primary colon tumors, liver metastases, and lung metastases. Statistical
 significance was assessed using linear mixed-effects models with patient as a
 random effect, followed by Benjamini–Hochberg adjustment for multiple
-comparisons. Adjusted p values are shown. \*\*\*\*p < 0.0001, \*\*p < 0.01,\*p <
-0.05.
+comparisons. Adjusted *p* values are shown: \*\*\*\* *p* < 0.0001,
+\*\* *p* < 0.01, and \* *p* < 0.05.
 
 **Supp Figure 1d. Adjacent non-malignant liver and lung ROIs compared to
 metastatic tumors**
@@ -129,11 +134,12 @@ Cell type scores for tCAFs and mCAFs, MRC1+CSF1R+ macrophages, aHSCs and CXCL12
 expression across primary colon tumors, liver metastases, lung metastases,
 adjacent non-malignant liver and lung tissue. Statistical significance was
 assessed using linear mixed-effects models with patient as a random effect,
-followed by Benjamini–Hochberg adjustment for multiple comparisons. Adjusted p
-values are shown. \*\*\*p < 0.001, \*\*p < 0.01,\*p < 0.05.
+followed by Benjamini–Hochberg adjustment for multiple comparisons. Adjusted
+*p* values are shown: \*\*\* *p* < 0.001, \*\* *p* < 0.01, and \* *p* < 0.05.
 
-… marks legend text omitted for panels with no code (schematics and multiplex
-immunofluorescence images); those panels are not generated by this code.
+… marks legend text omitted for panels with no code. Figure 1a, Figure 2e–g,
+Figure 3a and 3d, Supplementary Figure 1a, and Supplementary Figure 2 are not
+generated by this archive.
 
 
 ## Included Materials
