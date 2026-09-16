@@ -39,16 +39,22 @@ synchronous lung and liver metastases identifies a liver-specific stromal niche
 associated with immune exclusion". To run everything, press **Run**. This
 executes `code/run`, a shell script that runs one R script per figure. Click
 the Environment icon to see the installed packages (R 4.5.1, Bioconductor
-3.22). The generated figure panels are described below. The legend text is
-adapted from the current manuscript captions; ellipses mark panels not produced
-by this archive.
+3.22). Complete legends from the current manuscript are provided below. The
+code-generated panels are mapped separately under **Included Materials**.
 
-### Figure captions
+### Complete figure captions
 
 **Figure 1. Comparative transcriptomic and cellular landscapes of primary colon
 tumors and metastatic lesions in the liver and lung**
 
-… **(b)** Cell type composition in primary colon tumors (*n* = 3), liver
+**(a)** Workflow of the research design. Liver and lung metastasis samples from
+patients who underwent synchronous resections were chosen. ROIs of tumor
+(PanCK, green) and CD45 infiltration (red) were chosen for sequential RNA
+expression analysis using GeoMx DSP. Archival samples of primary colorectal
+tumors (*n* = 3) were also included in the analysis. Scale bar = 1 mm. Shaded
+areas within the images indicate the distinct ROIs selected for downstream
+analysis, highlighting representative regions across the tissue samples.
+**(b)** Cell type composition in primary colon tumors (*n* = 3), liver
 metastases (*n* = 8), and lung metastases (*n* = 8) using CIBERSORT. **(c)**
 Volcano plot showing differentially expressed genes (DEGs) between **(top)**
 colon and liver tumors and **(bottom)** colon and lung tumors. Vertical dashed
@@ -66,13 +72,21 @@ subpopulations across primary colon tumors and matched liver and lung
 metastases.**
 
 **(a)** Fibroblast subtypes mCAFs and tumor-associated tCAFs. **(b)**
-MRC1+CSF1R+ macrophages and SPP1+ macrophages exhibit site-specific enrichment,
+MRC1⁺CSF1R⁺ macrophages and SPP1⁺ macrophages exhibit site-specific enrichment,
 with higher scores in liver metastases highlighting a myeloid immunosuppressive
 phenotype. **(c)** Proliferating B cells and plasma cells show greater abundance
 in lung metastases, suggesting differential humoral immune activation. **(d)**
-Memory CD4+ Tcm and CD8+ T Tem cells are variably enriched across sites, with
+Memory CD4⁺ Tcm and CD8⁺ T Tem cells are variably enriched across sites, with
 increased scores in lung metastases indicating site-dependent adaptive immune
-engagement. The horizontal dashed line indicates a cell-type score of 0. …
+engagement. The horizontal dashed line indicates a cell-type score of 0.
+**(e)** Primary CRC and its metastases to the liver and lung are shown using
+multiplex immunofluorescence. Colon cancer shows the presence of fibroblasts
+(cyan, white), CD8 cells (yellow), and plasma cells (orange). **(f)** Liver
+metastases show the presence of fibroblasts (cyan, white), CD4 T cells (red),
+and macrophages (green, blue). The inset shows higher magnification of
+fibroblasts (cyan) and macrophages (green). **(g)** Lung metastases show the
+presence of CD8 cells (yellow) and plasma cells (orange). The inset shows higher
+magnification of proliferating B cells (pink, white arrow). Scale bar = 100 μm.
 Statistical significance was assessed using linear mixed-effects models with
 patient as a random effect, followed by Benjamini–Hochberg adjustment for
 multiple comparisons. Adjusted *p* values are shown: \*\*\*\* *p* < 0.0001,
@@ -81,31 +95,42 @@ multiple comparisons. Adjusted *p* values are shown: \*\*\*\* *p* < 0.0001,
 **Figure 3. Spatial immune profiling reveals site- and region-specific
 enrichment of immune populations in primary and metastatic colorectal cancer**
 
-… **(b)** Cell type score comparisons across tumor core (In) and invasive margin
-(Ex) regions in primary colon tumors, liver metastases, and lung metastases.
-Select populations shown include proliferating B cells, plasma cells, CD4+
-central memory T cells (Tcm), and CD8+ effector memory T cells. The horizontal
-dashed line indicates a cell-type score of 0. **(c)** Volcano plot showing
-differentially expressed genes **(top)** in the tumor core versus invasive
-margin of lung metastases and **(bottom)** in the tumor core versus invasive
-margin of liver metastases. Vertical dashed lines indicate the log2 fold-change
-cutoff, and the horizontal dashed line indicates the adjusted *p*-value
-threshold. …
-Statistical significance was assessed using linear mixed-effects models with
-patient as a random effect, followed by Benjamini–Hochberg adjustment for
-multiple comparisons. Adjusted *p* values are shown: \*\*\*\* *p* < 0.0001,
-\*\*\* *p* < 0.001, \*\* *p* < 0.01, and \* *p* < 0.05.
+**(a)** Morphology marker-stained representative section of a liver metastasis
+for digital spatial analysis. Green, PanCK; red, CD45; blue, nuclear stain.
+Representative ROI polygons (tumor core and invasive margin) were chosen for
+subsequent gene-expression analysis. **(b)** Cell type score comparisons across
+tumor core (In) and invasive margin (Ex) regions in primary colon tumors, liver
+metastases, and lung metastases. Select populations shown include proliferating
+B cells, plasma cells, CD4⁺ central memory T cells (Tcm), and CD8⁺ effector
+memory T cells. The horizontal dashed line indicates a cell-type score of 0.
+**(c)** Volcano plot showing differentially expressed genes **(top)** in the
+tumor core versus invasive margin of lung metastases and **(bottom)** in the
+tumor core versus invasive margin of liver metastases. Vertical dashed lines
+indicate the log2 fold-change cutoff, and the horizontal dashed line indicates
+the adjusted *p*-value threshold. **(d)** **Left:** Primary CRC shows tumor cells
+(purple) and immune CD4 and CD8 T cells (red, yellow), plasma cells (orange),
+and macrophages (green) at the tumor margin. **Middle:** Liver metastases show
+tumor cells (purple), immune T cells (red, yellow), and B cells (pink) separated
+by a rim of fibroblasts (white, cyan). The inset shows higher magnification of T
+cells and fibroblasts at the tumor border. **Right:** Lung metastases show immune
+T cells (red, yellow) and B cells (pink) infiltrating the metastatic tumor-cell
+(purple) lesion. Fewer fibroblasts (white, cyan) are seen in the surrounding
+invasive margin. The inset shows B cells (pink) and plasma cells (orange). Scale
+bar = 100 μm. Statistical significance was assessed using linear mixed-effects
+models with patient as a random effect, followed by Benjamini–Hochberg
+adjustment for multiple comparisons. Adjusted *p* values are shown:
+\*\*\*\* *p* < 0.0001, \*\*\* *p* < 0.001, \*\* *p* < 0.01, and \* *p* < 0.05.
 
 **Figure 4. Hepatic stellate cell activation and CXCL12-CXCR4 signaling are
 associated with an immunosuppressive niche in liver metastases.**
 
 **(a)** Cell type scores for aHSCs show selective enrichment in liver metastases
-compared to primary colon tumors and lung metastases, **(b)** *CXCL12*
+compared to primary colon tumors and lung metastases. **(b)** *CXCL12*
 expression is enriched in liver metastases relative to primary CRC and lung
-metastases, supporting a *CXCL12*-rich liver metastatic niche and **(c)**
+metastases, supporting a *CXCL12*-rich liver metastatic niche. **(c)**
 Expression of *CXCR4*, the cognate receptor for *CXCL12*, is also elevated in
 liver lesions, supporting a *CXCL12–CXCR4* signaling milieu that may contribute
-to immune exclusion, **(d)** In the TCGA-COAD+READ cohort, which predominantly
+to immune exclusion. **(d)** In the TCGA-COAD+READ cohort, which predominantly
 comprises primary colorectal tumors, the aHSC/fibrotic stromal gene signature
 showed a significant association with PFS (Cox proportional hazards *p* =
 0.022, HR = 1.426; log-rank *p* = 0.024), supporting the prognostic relevance
@@ -117,29 +142,62 @@ followed by Benjamini–Hochberg adjustment for multiple comparisons; adjusted
 Survival analyses in (d) were evaluated by Cox proportional hazards and
 log-rank tests and were not subject to multiple-comparison adjustment.
 
-**Supp Figure 1b-c. Spatial immune differences across metastatic sites**
+**Supplementary Figure 1a. Graphical abstract**
 
-**(b)** Cell type scores for mCAFs and tCAFs and **(c)** MRC1+CSF1R+ macrophages
-and SPP1+ macrophages across tumor core (In) and invasive margin (Ex) regions in
-primary colon tumors, liver metastases, and lung metastases. Statistical
-significance was assessed using linear mixed-effects models with patient as a
-random effect, followed by Benjamini–Hochberg adjustment for multiple
-comparisons. Adjusted *p* values are shown: \*\*\*\* *p* < 0.0001,
+Highlights:
+
+- CRC liver metastases exhibit a dense immunosuppressive microenvironment
+  characterized by activated hepatic stellate cells (aHSCs) and fibrotic
+  stroma.
+- CRC liver metastases show increased immunosuppressive macrophage infiltration
+  in association with an activated hepatic stellate cell/myofibroblast program
+  and CXCL12/CXCR4 signaling.
+- T cells are spatially excluded and primarily restricted to the invasive tumor
+  margin in liver metastases, highlighting a strong immune-exclusion mechanism.
+- In contrast, synchronous lung metastases demonstrate sparse fibroblasts and
+  uniformly infiltrating proliferating B cells and T cells, indicating an
+  immunologically permissive microenvironment.
+- Primary CRC tumors exhibit a fibroblast-rich, mesenchymal microenvironment
+  with moderate infiltration of T cells at the invasive margin and
+  immunosuppressive macrophages, representing an intermediate microenvironment.
+
+**Supplementary Figure 1b-c. Spatial immune differences across metastatic
+sites**
+
+**(b)** Cell type scores for mCAFs and tCAFs and **(c)** MRC1⁺CSF1R⁺
+macrophages and SPP1⁺ macrophages across tumor core (In) and invasive margin
+(Ex) regions in primary colon tumors, liver metastases, and lung metastases.
+Statistical significance was assessed using linear mixed-effects models with
+patient as a random effect, followed by Benjamini–Hochberg adjustment for
+multiple comparisons. Adjusted *p* values are shown: \*\*\*\* *p* < 0.0001,
 \*\* *p* < 0.01, and \* *p* < 0.05.
 
-**Supp Figure 1d. Adjacent non-malignant liver and lung ROIs compared to
-metastatic tumors**
+**Supplementary Figure 1d. Adjacent non-malignant liver and lung ROIs compared
+to metastatic tumors**
 
-Cell type scores for tCAFs and mCAFs, MRC1+CSF1R+ macrophages, aHSCs and CXCL12
-expression across primary colon tumors, liver metastases, lung metastases,
-adjacent non-malignant liver and lung tissue. Statistical significance was
-assessed using linear mixed-effects models with patient as a random effect,
-followed by Benjamini–Hochberg adjustment for multiple comparisons. Adjusted
-*p* values are shown: \*\*\* *p* < 0.001, \*\* *p* < 0.01, and \* *p* < 0.05.
+Cell type scores for tCAFs and mCAFs, MRC1⁺CSF1R⁺ macrophages, aHSCs, and
+*CXCL12* expression across primary colon tumors, liver metastases, lung
+metastases, and adjacent non-malignant liver and lung tissue. Statistical
+significance was assessed using linear mixed-effects models with patient as a
+random effect, followed by Benjamini–Hochberg adjustment for multiple
+comparisons. Adjusted *p* values are shown: \*\*\* *p* < 0.001,
+\*\* *p* < 0.01, and \* *p* < 0.05.
 
-… marks legend text omitted for panels with no code. Figure 1a, Figure 2e–g,
-Figure 3a and 3d, Supplementary Figure 1a, and Supplementary Figure 2 are not
-generated by this archive.
+**Supplementary Figure 2. Multiplex IF quantification for biomarkers across
+primary and metastatic sites**
+
+**(a)** Multiplex IF quantification of proliferating B (CD20⁺Ki-67⁺) cells,
+plasma cells (CD79a⁺), and CD4⁺ and CD8⁺ T-cell densities across tumor core and
+tumor border in primary colon tumors, liver metastases, and lung metastases.
+**(b)** Multiplex IF images show individual channels for CD4, SMA, CDX2, CD79a,
+CD20, CD8, CD68, CD206, FAP, and Ki-67 in primary CRC, liver metastases, and
+lung metastases. Statistical significance was assessed using paired *t* tests.
+*p* values are shown: \*\*\* *p* < 0.001 and \* *p* < 0.05.
+
+The captions above are complete. The public analysis code generates Figure
+1b–d, Figure 2a–d, Figure 3b–c, Figure 4a–d, and Supplementary Figure 1b–d, as
+mapped below. The remaining schematic and multiplex immunofluorescence panels
+are included for caption completeness but are not generated by this archive.
 
 
 ## Included Materials
