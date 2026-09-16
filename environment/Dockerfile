@@ -11,6 +11,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
       libcurl4-openssl-dev libssl-dev libxml2-dev libfontconfig1-dev \
       libharfbuzz-dev libfribidi-dev libfreetype6-dev libpng-dev \
       libtiff5-dev libjpeg-dev libhdf5-dev libgit2-dev zlib1g-dev \
+      libmagick++-dev \
  && rm -rf /var/lib/apt/lists/*
 
 COPY install.R /tmp/install.R

@@ -1,10 +1,12 @@
 ## Package installation for the capsule image.
 ##
 ## The CRAN snapshot is pinned by date so a rebuild resolves the same versions
-## the published analysis used. Bioconductor is pinned to 3.22, which is the
-## release matching R 4.5.1.
+## the published analysis used. The __linux__/jammy path serves prebuilt
+## Ubuntu 22.04 binaries of that same snapshot, which matches the Code Ocean
+## base image and avoids compiling every package from source. Bioconductor is
+## pinned to 3.22, which is the release matching R 4.5.1.
 
-options(repos = c(CRAN = "https://packagemanager.posit.co/cran/2025-09-01"),
+options(repos = c(CRAN = "https://packagemanager.posit.co/cran/__linux__/jammy/2025-09-01"),
         Ncpus = max(1L, parallel::detectCores()))
 
 ## Every package the pipeline loads, and nothing else. `ggpubr` is pulled in
