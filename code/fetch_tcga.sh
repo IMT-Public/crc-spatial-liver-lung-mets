@@ -56,4 +56,4 @@ done
 
 echo
 echo "Done. The third file 04_figure4.R needs, some_cell_subtype_markers.xlsx,"
-echo "is specific to this study and ships with the data -- see data/README.md."
+echo "is specific to this study and is already in data/ -- see data/README.md."
