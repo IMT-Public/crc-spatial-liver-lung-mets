@@ -2,13 +2,6 @@
 
 This repository contains the analysis code and computational environment supporting the study Spatial profiling of primary CRC and synchronous lung and liver metastases identifies a liver-specific stromal niche associated with immune exclusion. The study compares spatial immune and stromal programs across matched primary CRC, liver metastases, and lung metastases, with particular emphasis on liver-associated stromal remodeling, immune exclusion, and activated hepatic stellate cell programs.
 
-## Reproducing the analysis
-
-1. Create/install the environment
-2. Obtain/download the required data
-3. Run scripts in this order
-4. Expected outputs are written to results/
-
 The public analysis code generates Figure
 1b–d, Figure 2a–d, Figure 3b–c, Figure 4a–d, and Supplementary Figure 1b–d, as
 mapped below.
