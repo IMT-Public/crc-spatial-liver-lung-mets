@@ -1,12 +1,12 @@
 # Spatial profiling of primary CRC and synchronous lung and liver metastases identifies a liver-specific stromal niche associated with immune exclusion
 
-This repository contains the analysis code and computational environment supporting the study Spatial profiling of primary CRC and synchronous lung and liver metastases identifies a liver-specific stromal niche associated with immune exclusion. The study compares spatial immune and stromal programs across matched primary CRC, liver metastases, and lung metastases, with particular emphasis on liver-associated stromal remodeling, immune exclusion, and activated hepatic stellate cell programs.
+This repository contains the analysis code and computational environment supporting the study *Spatial profiling of primary CRC and synchronous lung and liver metastases identifies a liver-specific stromal niche associated with immune exclusion*. The study compares spatial immune and stromal programs across matched primary CRC, liver metastases, and lung metastases, with particular emphasis on liver-associated stromal remodeling, immune exclusion, and activated hepatic stellate cell programs.
 
 The public analysis code generates Figure
 1b–d, Figure 2a–d, Figure 3b–c, Figure 4a–d, and Supplementary Figure 1b–d, as
 mapped below.
 
-## Included Materials
+## Repository structure
 
 ```
 code/          one R script per figure, plus shared code in code/lib; code/run is the entry point
@@ -41,7 +41,9 @@ The box and violin panels in the published figures were drawn in GraphPad
 Prism from the values these scripts produce; the R panels show the same values
 but are not pixel-identical.
 
-## Reproducing the analyses
+## Reproducibility
+
+The complete reproducible computational environment is available as a Code Ocean capsule: [link/DOI].
 
 **On Code Ocean.** Press **Run**. Results are written to `/results`.
 
@@ -84,8 +86,7 @@ TCGA-COAD/READ expression and clinical data are public, from cBioPortal study
 
 See also `CITATION.cff`.
 
-Analysis code: Wenbin Liu, Alejandro Jiménez-Sánchez, Yulong Chen,
-Jiun-Sheng Chen.
+Analysis code: Wenbin Liu, Yulong Chen, Jiun-Sheng Chen, Alejandro Jiménez-Sánchez.
 
 ## License
 
