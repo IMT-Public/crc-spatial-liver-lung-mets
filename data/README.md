@@ -20,8 +20,3 @@ European Genome-phenome Archive, accession **EGA00002691488**.
 `coadread_tcga_pan_can_atlas_2018`) and are not stored in git. Download them
 with `cd code && ./fetch_tcga.sh`. The Code Ocean capsule already includes
 them.
-
-**De-identification.** Patients, slides and ROIs carry neutral codes
-(`1`–`8`, `slide_01`, `ROI_001`); the key to the original identifiers is held
-by the study team. `code/check_inputs.R` verifies that all files are present
-and that no original identifiers remain.
