@@ -51,8 +51,8 @@ The complete reproducible computational environment is available as a Code Ocean
 
 1. Install R 4.5.1 and the packages in `environment/install.R` (Bioconductor
    3.22), or build the image from `environment/Dockerfile`.
-2. Download the two public TCGA files: `cd code && ./fetch_tcga.sh`. All
-   other inputs are already in `data/`.
+2. All inputs are already in `data/`. Fig 4d uses a processed TCGA score
+   table; `data/README.md` explains how to rebuild it from the source files.
 3. Check the inputs and run:
 
 ```bash
@@ -71,9 +71,11 @@ otherwise to `../data` and `../results`. Override them with `CRC_DATA_DIR` and
 The processed, de-identified ROI-level data needed to reproduce the figures
 are in `data/` and in the Code Ocean capsule; `data/README.md` lists the files.
 Raw GeoMx DSP data are under controlled access at the European Genome-phenome
-Archive, accession **EGA00002691488**. TCGA-COAD/READ data are public from
-cBioPortal (`coadread_tcga_pan_can_atlas_2018`) and are downloaded by
-`code/fetch_tcga.sh`.
+Archive, accession **EGA00002691488**. TCGA-COAD/READ data are available from
+cBioPortal (`coadread_tcga_pan_can_atlas_2018`). They are not redistributed
+here: only the processed per-patient aHSC score and PFS table used for
+Fig 4d is included. `data/README.md` explains how to download the source files
+(`code/fetch_tcga.sh`) and regenerate the table.
 
 ## Citation
 

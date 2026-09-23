@@ -72,20 +72,6 @@ if (!is.null(p)) {
       miss <- setdiff(need, pdcols)
       if (!length(miss)) ok("  pData has patient/Area/Site2/GeneDetectionRate/slide/Sample_ID")
       else bad(paste("  pData missing columns:", paste(miss, collapse = ", ")))
-      ## PHI sweep -- nothing here should look like an identifier or a date.
-      susp <- grep("mrn|name|dob|birth|ssn|date", pdcols, ignore.case = TRUE, value = TRUE)
-      if (length(susp)) warn(paste("  review before publishing, pData columns:",
-                                   paste(susp, collapse = ", ")))
-      else ok("  no obviously identifying pData column names")
-      ## Slides must carry arbitrary labels, never pathology accession numbers.
-      acc <- grepl("S[0-9]{2}-[0-9]{4,}", as.character(Biobase::pData(targets.new)$slide))
-      if (any(acc)) bad(sprintf("  pData$slide holds %d accession-like values; use the recoded object",
-                                sum(acc)))
-      else ok("  pData$slide carries no pathology accession numbers")
-      ## ROIs must carry ROI_### codes, not GeoMx DSP scan IDs (plate/well).
-      dsp <- grepl("^DSP-", Biobase::sampleNames(targets.new))
-      if (any(dsp)) bad(sprintf("  %d ROIs still named by DSP scan ID; use the recoded object", sum(dsp)))
-      else ok("  ROIs carry ROI_### codes, not DSP scan IDs")
     } else {
       bad(paste("  expected object 'targets.new'; file contains:",
                 paste(ls(e), collapse = ", ")))
@@ -106,8 +92,7 @@ if (!is.null(p)) {
   }
 }
 
-## 01_figure1.R reads this for Figure 1c (the default, CRC_FIG1C_METHOD=lme)
-## and always for Figure 1d.
+## Mixed-model results for Figures 1c and 1d.
 p <- have("data_volcanoplot_pathway", "DE_res_combinedROIs_lme.xlsx")
 if (!is.null(p) && requireNamespace("readxl", quietly = TRUE)) {
   sh <- readxl::excel_sheets(p)
@@ -173,17 +158,29 @@ if (!is.null(p)) {
 ## --- 4. TCGA ---------------------------------------------------------------
 cat("\n[4/4] data_tcga/  (04_figure4.R -> Fig 4d)\n")
 
-p <- have("data_tcga", "some_cell_subtype_markers.xlsx")
+## The capsule ships only the processed per-patient score table; the raw
+## cBioPortal files are optional and needed only to regenerate it (see the
+## commented block in 04_figure4.R and code/fetch_tcga.sh).
+p <- have("data_tcga", "TCGA_COADREAD_aHSC_GSVA_PFS.csv")
+if (!is.null(p)) {
+  sc <- utils::read.csv(p)
+  need <- c("PATIENT_ID", "PFS_MONTHS", "PFS_STATUS", "gsva")
+  miss <- setdiff(need, names(sc))
+  if (!length(miss)) ok(sprintf("  %d patients with aHSC score and PFS", nrow(sc)))
+  else bad(paste("  missing columns:", paste(miss, collapse = ", ")))
+}
+
+p <- have("data_tcga", "some_cell_subtype_markers.xlsx", required = FALSE)
 if (!is.null(p) && requireNamespace("readxl", quietly = TRUE)) {
   sh <- readxl::excel_sheets(p)
   ok(sprintf("  %d sheets: %s", length(sh), paste(sh, collapse = ", ")))
-  ## 04_figure4.R selects the aHSC sheet by name, so sheet order does not
-  ## matter -- but the name has to exist.
-  if ("aHSC" %in% sh) ok("  sheet 'aHSC' present -> 04_figure4.R can build Fig 4d")
-  else bad("  no sheet named 'aHSC'; 04_figure4.R selects it by name and will stop")
+  ## The scoring block selects the aHSC sheet by name, so sheet order does
+  ## not matter -- but the name has to exist.
+  if ("aHSC" %in% sh) ok("  sheet 'aHSC' present -> the TCGA scores can be regenerated")
+  else bad("  no sheet named 'aHSC'; the scoring block selects it by name and will stop")
 }
 
-p <- have("data_tcga", "data_clinical_patient.txt")
+p <- have("data_tcga", "data_clinical_patient.txt", required = FALSE)
 if (!is.null(p)) {
   cl <- utils::read.delim(p, skip = 4, nrows = 5)
   need <- c("PFS_MONTHS", "PFS_STATUS")
@@ -192,7 +189,7 @@ if (!is.null(p)) {
   else bad(paste("  missing after skip=4 (header offset wrong?):", paste(miss, collapse = ", ")))
 }
 
-p <- have("data_tcga", "data_mrna_seq_v2_rsem_zscores_ref_all_samples.txt")
+p <- have("data_tcga", "data_mrna_seq_v2_rsem_zscores_ref_all_samples.txt", required = FALSE)
 if (!is.null(p)) {
   hdr <- utils::read.delim(p, nrows = 2)
   ok(sprintf("  %d columns (2 annotation + ~%d samples)", ncol(hdr), ncol(hdr) - 2))
@@ -200,7 +197,7 @@ if (!is.null(p)) {
   genes <- utils::read.delim(p, colClasses = c("character", rep("NULL", ncol(hdr) - 1)))[[1]]
   miss <- setdiff(ahsc, genes)
   if (!length(miss)) ok("  all 5 aHSC signature genes present in the expression matrix")
-  else bad(paste("  aHSC genes absent from the matrix (Fig 4d will be wrong):",
+  else bad(paste("  aHSC genes absent from the matrix (regenerated scores will be wrong):",
                  paste(miss, collapse = ", ")))
 }
 

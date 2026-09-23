@@ -3,8 +3,9 @@
 !/results/.gitkeep
 
 # Processed, de-identified study data are tracked (slides and ROIs recoded;
-# see data/README.md). The two public TCGA files are not: they are fetched by
-# code/fetch_tcga.sh and the expression matrix alone is 83 MB.
+# see data/README.md). The raw TCGA files are third-party data and are never
+# redistributed: users fetch them with code/fetch_tcga.sh. Only the processed
+# score table data/data_tcga/TCGA_COADREAD_aHSC_GSVA_PFS.csv is tracked.
 /data/data_tcga/data_clinical_patient.txt
 /data/data_tcga/data_mrna_seq_v2_rsem_zscores_ref_all_samples.txt
 

@@ -19,8 +19,7 @@ suppressPackageStartupMessages({
 GEOMX_RDATA <- c("data_volcanoplot_pathway",
                  "targets.new-219-ROIs-newHKthenQ3.RDATA")
 
-## The object is ~9 MB and several figures load it more than once per session;
-## keep one copy per R session.
+## Keep one copy of the object per R session.
 .geomx_cache <- new.env(parent = emptyenv())
 
 load_geomx <- function() {
@@ -31,9 +30,7 @@ load_geomx <- function() {
   .geomx_cache$targets
 }
 
-## Site labels in the raw object are free text ("Liver mets (met)", "Colon
-## tumor"). Every model keys off the cleaned form, so normalise once here
-## rather than in each script.
+## Normalise the free-text site labels ("Liver mets (met)", "Colon tumor").
 clean_site <- function(x) {
   x |>
     stringr::str_replace("\\s", "_") |>
@@ -46,7 +43,7 @@ LEV_AREA <- c("TIL", "TB", "T", "AN")
 LEV_SITE <- c("Liver_AN", "Liver_met", "Lung_AN", "Lung_met", "Colon_prim")
 
 ## Returns list(pd, d): phenotype rows and the log_q matrix, same order,
-## with the TBD and TLS areas dropped (never used in the paper).
+## with the TBD and TLS areas dropped.
 geomx_expression <- function() {
   targets.new <- load_geomx()
 

@@ -1,6 +1,11 @@
 #!/usr/bin/env bash
 # ---------------------------------------------------------------------------
-# Fetch the public TCGA-COAD/READ files that 04_figure4.R needs for Fig 4d.
+# Fetch the public TCGA-COAD/READ files used to COMPUTE the Fig 4d scores.
+#
+# The reproducible run does not need them: Fig 4d is drawn from the processed
+# table data/data_tcga/TCGA_COADREAD_aHSC_GSVA_PFS.csv (aHSC score + PFS per
+# patient). Run this only to regenerate that table, then uncomment the
+# scoring block in 04_figure4.R.
 #
 #   cd code && ./fetch_tcga.sh
 #
@@ -12,10 +17,9 @@
 # To download by hand instead, use the study page:
 #   https://www.cbioportal.org/study/summary?id=coadread_tcga_pan_can_atlas_2018
 #
-# These files are public and redistributable, so they are BUNDLED into /data
-# for the Code Ocean capsule: a Reproducible Run has no network access. This
-# script is for local and CI runs. Neither file is tracked in git (the rest of
-# data/ is) -- the expression matrix alone is 83 MB.
+# These are third-party data and are NOT redistributed: neither file is
+# tracked in git or included in the Code Ocean capsule. Users download them
+# themselves, subject to the TCGA / cBioPortal terms of use.
 # ---------------------------------------------------------------------------
 set -euo pipefail
 cd "$(dirname "$0")"
@@ -41,7 +45,7 @@ for f in "${FILES[@]}"; do
   curl -fL --progress-bar "$BASE/$f" -o "$tmp"
 
   # A Git LFS pointer is ~130 bytes and starts with "version https://git-lfs".
-  # Catching that here beats failing three minutes into 04_figure4.R.
+
   if head -c 24 "$tmp" | grep -q '^version https://git-lfs'; then
     rm -f "$tmp"
     echo "ERROR: got an LFS pointer, not the file. The datahub layout may have" >&2
@@ -55,5 +59,6 @@ for f in "${FILES[@]}"; do
 done
 
 echo
-echo "Done. The third file 04_figure4.R needs, some_cell_subtype_markers.xlsx,"
-echo "is specific to this study and is already in data/ -- see data/README.md."
+echo "Done. The marker list some_cell_subtype_markers.xlsx is already in data/."
+echo "To regenerate data_tcga/TCGA_COADREAD_aHSC_GSVA_PFS.csv, uncomment the"
+echo "scoring block in 04_figure4.R and run it once."

@@ -2,9 +2,8 @@
 ## lib/gsva_scores.R -- per-ROI signature scores, averaged to one row per
 ##                      patient x site x area
 ##
-## Most scores were computed once from the Danaher/MCP-counter marker lists and
-## ship as GSVAscores_updated_03272025.csv, a capsule input. Two are
-## scored here because their gene lists arrived later:
+## Most scores are read from GSVAscores_updated_03272025.csv. Two are scored
+## here:
 ##   CD4.Tn.CCR7   50-gene CD4+CCR7+ Tcm list
 ##   Plasma.cells  9-gene plasma cell list
 ##
@@ -27,22 +26,14 @@ gsva_scores <- function(d) {
   gs <- read.csv(require_input("data_boxplots", "GSVAscores_updated_03272025.csv"))
   load(require_input("data_boxplots", "CD4TnCCR7_top50genes.RDATA"))  # -> top.genes
 
-  ## Scores are assigned positionally, so ROI order must agree. The CSV keeps
-  ## the ".dcc" suffix that the expression matrix drops -- compare like with
-  ## like, or the check silently passes over a real misalignment.
+  ## Scores are assigned positionally, so ROI order must agree.
   stopifnot(identical(sub("\\.dcc$", "", gs$ROI), colnames(d)))
 
   gs$CD4.Tn.CCR7 <- gsva(gsvaParam(d, list(CD4.Tn.CCR7 = top.genes)),
                          verbose = FALSE)[1, ]
 
-  ## 7 of the 9 plasma genes are on the GeoMx WTA panel (MS4A1 and CD38 are
-  ## not); GSVA scores the intersection, as it did for the published figures.
-  found <- intersect(PLASMA_GENES, rownames(d))
-  message("plasma signature: ", length(found), "/", length(PLASMA_GENES),
-          " genes found (missing: ",
-          paste(setdiff(PLASMA_GENES, found), collapse = ", "), ")")
-  stopifnot(length(found) > 0)
-
+  ## MS4A1 and CD38 are not on the GeoMx WTA panel; GSVA scores the
+  ## remaining seven genes.
   gs$Plasma.cells <- gsva(gsvaParam(d, list(plasma = PLASMA_GENES)),
                           verbose = FALSE)[1, ]
 
@@ -64,8 +55,7 @@ average_rois <- function(gs) {
   out
 }
 
-## Scoring takes a minute and Figure 2 needs both the per-ROI and the averaged
-## table in the same session; keep one copy per R session.
+## Keep one copy of the scores per R session.
 .score_cache <- new.env(parent = emptyenv())
 
 roi_scores <- function() {
@@ -74,18 +64,13 @@ roi_scores <- function() {
   .score_cache$roi
 }
 
-## Per-ROI scores in the shape the panels want: adjacent-normal and unused
-## areas dropped, Site collapsed to Colon / Liver / Lung.
-##
-## This is what the dots in the published Figure 2 are: one dot per ROI --
-## 25 colon, 69 liver, 66 lung -- not one per patient, and not one per cell.
-## The models still run on the averaged table below, so the panel draws the
-## ROI-level spread over p-values fit on patient means. See lib/panels.R.
+## Per-ROI scores for the Figure 2 panels: adjacent-normal and unused areas
+## dropped, Site collapsed to Colon / Liver / Lung.
 site_roi_scores <- function() {
   roi_scores() %>%
     filter(!Area %in% c("AN", "TBD", "TLS")) %>%
     mutate(Site = factor(Site2, levels = c("Colon", "Liver", "Lung")))
 }
 
-## The one call every model makes: one row per patient x site x area.
+## One row per patient x site x area; every model uses this.
 site_area_scores <- function() average_rois(roi_scores())

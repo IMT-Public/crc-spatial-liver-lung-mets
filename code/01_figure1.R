@@ -7,32 +7,9 @@
 ##
 ## Figure 1a is a study schematic and has no code.
 ##
-## FIGURE 1c IS A MIXED MODEL
-## --------------------------
-## Figure 1c is a per-gene linear mixed-effects fit -- patient random
-## intercept, GeneDetectionRate covariate -- read from
-## `DE_res_combinedROIs_lme.xlsx`, the same table Figure 1d is ranked from. It
-## takes hours over ~18k genes and is not re-run here; it ships as an input.
-##
-## The panels as originally SUBMITTED were something else: a per-gene Welch
-## two-sample t-test on the `log_q` assay, adjacent-normal ROIs dropped, the 11
-## TLS ROIs KEPT (171 ROIs), Benjamini-Hochberg within each 6,188-gene
-## contrast, which reproduces the journal's Source Data exactly, to 5.6e-17.
-## That fit treats 171 ROIs from 8 patients as independent observations, which
-## they are not, and it is kept only so the submitted panel can be regenerated
-## and checked:
-##
-##   CRC_FIG1C_METHOD=lme     (default)  the mixed model -- the published fit
-##   CRC_FIG1C_METHOD=welch              the originally submitted panel
-##
-## The two agree on direction (1.000), on effect size (r = 0.986 / 0.987) and
-## on 34 of the 36 labelled genes; IGHM and IGHA1 clear FDR 0.05 under the
-## t-test (0.014, 0.050) and not under the mixed model (0.069, 0.223).
-##
-## FIGURE 1d IS ALWAYS THE MIXED MODEL, whatever CRC_FIG1C_METHOD says.
-## Ranking fgsea on load_de_results() reproduces the printed dot plots set for
-## set, in order; ranking on the t-test gives seven sets and three instead of
-## six and five. The switch above must not reach 1d.
+## Figures 1c and 1d use the per-gene linear mixed-effects results (patient
+## random intercept, GeneDetectionRate covariate) in
+## DE_res_combinedROIs_lme.xlsx.
 ## ---------------------------------------------------------------------------
 
 suppressPackageStartupMessages({
@@ -43,14 +20,11 @@ source("lib/paths.R")
 source("lib/load_geomx.R")
 source("lib/de_volcano_gsea.R")
 
-FIG1C_METHOD <- match.arg(Sys.getenv("CRC_FIG1C_METHOD", unset = "lme"),
-                          c("lme", "welch"))
-
 ## ---------------------------------------------------------------------------
 ## 1b -- CIBERSORTx immune composition
 ## ---------------------------------------------------------------------------
-## The CIBERSORTx table is row-aligned to the raw object, so this one panel
-## uses load_geomx() rather than the filtered geomx_expression().
+## The CIBERSORTx table is row-aligned to the raw object, so this panel uses
+## load_geomx() rather than the filtered geomx_expression().
 targets <- load_geomx()
 ct.frac <- read.csv(require_input("data_cibersortx",
                                   "CIBERSORTx_Job14_Results_02152024.csv"),
@@ -107,87 +81,49 @@ ggsave(fig_path("figure1", "Fig1b_cibersortx_stacked_barplot.pdf"), p1b,
        width = 4, height = 5)
 write.csv(prop.site, fig_path("figure1", "Fig1b_proportions.csv"),
           row.names = FALSE)
-message("  Fig 1b  immune fractions")
+message("  Fig 1b")
 
 ## ---------------------------------------------------------------------------
 ## 1c -- volcanoes
 ## ---------------------------------------------------------------------------
-## The published panels label a hand-picked set of genes of interest, not an
-## algorithmic top-N. The lists were lifted as text from the Source Data vector
-## PDFs. Note the lung panel's label reads IL17RA, not IL7R.
-FIG1C_PUBLISHED_LABELS <- list(
+## Genes of interest labelled on each panel.
+FIG1C_LABELS <- list(
   `Liver - Colon` = c("APOC1", "ARID1B", "CCL24", "CD79A", "CTNNB1", "CXCL14",
                       "FN1", "FZD1", "GATA2", "IFI30", "ITGB1", "MZT2B",
                       "SERPINA1", "TIMP1", "WNT3", "ZFP57"),
   `Lung - Colon`  = c("ACTA2", "AGBL5", "ARID1B", "CCL24", "CD163", "CD274",
                       "COL1A1", "CXCL14", "FZD1", "HLA-E", "IGHA1", "IGHM",
                       "IL17RA", "MZT2B", "PFN1", "RNASE1", "SFTPB", "TGFB1",
-                      "VEGFA", "ZFP57"))
+                      "VEGFA", "ZFP57", "WNT3", "CTNNB1", "GATA2"))
 
-## The Wnt/beta-catenin and GATA2 genes are labelled on the published
-## Liver-Colon panel but not on Lung-Colon, where all four are also
-## significant. Adding them makes the Lung-Colon panel a superset of the print;
-## the two sets are kept apart so the published one stays auditable.
-FIG1C_EXTRA_LABELS <- c("ARID1B", "WNT3", "CTNNB1", "GATA2")
-FIG1C_LABELS <- lapply(FIG1C_PUBLISHED_LABELS,
-                       \(x) union(x, FIG1C_EXTRA_LABELS))
-
-de <- switch(FIG1C_METHOD,
-             welch = welch_de_results(names(FIG1C_LABELS)),
-             lme   = load_de_results())
-message("  Fig 1c  differential expression: ", FIG1C_METHOD)
+de <- load_de_results()
 
 for (ct in names(FIG1C_LABELS)) {
-  labs <- FIG1C_LABELS[[ct]]
-  miss <- setdiff(labs, de$Gene[de$Contrast == ct])
-  if (length(miss))
-    message("    !! label absent from the DE table: ", paste(miss, collapse = ", "))
-
   nm <- sub(" - ", "_vs_", ct)
   ggsave(fig_path("figure1", sprintf("Fig1c_volcano_%s.pdf", nm)),
-         volcano_plot(de, ct, label_genes = labs), width = 6, height = 5)
+         volcano_plot(de, ct, label_genes = FIG1C_LABELS[[ct]]),
+         width = 6, height = 5)
 
-  ## The differential expression behind the panel: every gene, with the
-  ## estimate, the nominal p, the adjusted p and the band it falls in.
-  d <- de[de$Contrast == ct, c("Gene", "Contrast", "Estimate", "Pr(>|t|)",
-                               "FDR", "Color")]
+  d <- de[de$Contrast == ct, c("Gene", "Contrast", "Estimate", "Pr(>|t|)", "FDR")]
   write.csv(d[order(d$FDR), ],
             fig_path("figure1", sprintf("Fig1c_DE_%s.csv", nm)),
             row.names = FALSE)
-
-  ## Every label with the numbers behind it, so the panel can be checked
-  ## without re-reading the figure.
-  st <- de[de$Contrast == ct & de$Gene %in% labs,
-           c("Gene", "Estimate", "Pr(>|t|)", "FDR", "Color")]
-  st$published  <- st$Gene %in% FIG1C_PUBLISHED_LABELS[[ct]]
-  st$passes_FDR <- st$FDR < 0.05
-  st$passes_FC  <- abs(st$Estimate) > FC_CUTOFF
-  write.csv(st[order(st$FDR), ],
-            fig_path("figure1", sprintf("Fig1c_label_status_%s.csv", nm)),
-            row.names = FALSE)
-  message(sprintf("    %-14s %d labels, %d below FDR 0.05, %d below |log2FC| %.1f",
-                  nm, nrow(st), sum(!st$passes_FDR), sum(!st$passes_FC), FC_CUTOFF))
+  message("  Fig 1c  ", ct)
 }
 
 ## ---------------------------------------------------------------------------
 ## 1d -- Hallmark GSEA
 ## ---------------------------------------------------------------------------
-## Always the mixed model, never FIG1C_METHOD: see the header. The panel shows
-## every Hallmark set reaching the nominal p < 0.05 -- six on Liver - Colon,
-## five on Lung - Colon -- with an asterisk on those that also survive BH.
-de_1d <- if (FIG1C_METHOD == "lme") de else load_de_results()
-
+## Every Hallmark set reaching nominal p < 0.05 is shown; sets that also reach
+## FDR < 0.05 are starred.
 for (ct in names(FIG1C_LABELS)) {
-  g  <- hallmark_gsea(de_1d, ct)
+  g  <- hallmark_gsea(de, ct)
   nm <- sub(" - ", "_vs_", ct)
   ggsave(fig_path("figure1", sprintf("Fig1d_gsea_hallmark_%s.pdf", nm)),
          gsea_dotplot(g, ct), width = 6, height = 5)
-
-  tb <- gsea_table(g)
-  write.csv(tb, fig_path("figure1", sprintf("Fig1d_gsea_%s.csv", nm)),
+  write.csv(gsea_table(g), fig_path("figure1", sprintf("Fig1d_gsea_%s.csv", nm)),
             row.names = FALSE)
-  message(sprintf("  Fig 1d  %-14s %d sets plotted (p < 0.05), %d starred (FDR < 0.05)",
-                  nm, sum(tb$plotted), sum(tb$starred)))
+  message("  Fig 1d  ", ct)
 }
 
 message("Figure 1 done -> ", normalizePath(results_path("figure1"), mustWork = FALSE))

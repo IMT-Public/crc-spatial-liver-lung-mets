@@ -1,7 +1,7 @@
 ## Package installation for the capsule image.
 ##
 ## The CRAN snapshot is pinned by date so a rebuild resolves the same versions
-## the published analysis used. The __linux__/jammy path serves prebuilt
+## the analysis used. The __linux__/jammy path serves prebuilt
 ## Ubuntu 22.04 binaries of that same snapshot, which matches the Code Ocean
 ## base image and avoids compiling every package from source. Bioconductor is
 ## pinned to 3.22, which is the release matching R 4.5.1.
@@ -19,7 +19,7 @@ cran <- c(
   "ggplot2", "dplyr", "tidyr", "tibble", "stringr",
   "ggrepel", "ggpubr", "patchwork",
   "RColorBrewer", "reshape2",
-  "readxl", "writexl",
+  "readxl",
   "lme4", "lmerTest", "nlme",
   "survival", "survminer"
 )
