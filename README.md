@@ -43,7 +43,9 @@ but are not pixel-identical.
 
 ## Reproducibility
 
-The complete reproducible computational environment is available as a Code Ocean capsule: [link/DOI].
+The code, data, and complete computational environment are also deposited as a Code Ocean capsule: <https://codeocean.com/capsule/8558082/tree/v1>.
+
+> **Note:** The manuscript is in final revision. The Code Ocean capsule is private for now and will become public when the paper is published.
 
 **On Code Ocean.** Press **Run**. Results are written to `/results`.
 
