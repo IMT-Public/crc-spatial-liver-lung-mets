@@ -43,9 +43,7 @@ but are not pixel-identical.
 
 ## Reproducibility
 
-The code, data, and complete computational environment are also deposited as a Code Ocean capsule: <https://codeocean.com/capsule/8558082/tree/v1>.
-
-> **Note:** The manuscript is in final revision. The Code Ocean capsule is private for now and will become public when the paper is published.
+The code, data, and complete computational environment are also deposited as a Code Ocean capsule: <https://codeocean.com/capsule/8558082/tree/v1>. The link will become publicly available, and a DOI will be assigned, once the publication is printed.
 
 **On Code Ocean.** Press **Run**. Results are written to `/results`.
 
